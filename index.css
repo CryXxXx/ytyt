@@ -1,0 +1,652 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+}
+
+.hello {
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-weight: 500; /* Medium weight */
+    position: absolute;
+    top: 20px; /* Отступ сверху на 20 пикселей */
+    left: 6%; /* Отступ слева на 20 пикселей */
+    color: #696969;
+}
+
+.nickname {
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 600; /* Medium weight */
+    position: absolute;
+    top: 35px; /* Смещение на 40 пикселей от верха */
+    left: 6%;
+    color: #1b1b1b;
+}
+
+.green-circle {
+    width: 36px; /* Диаметр круга */
+    height: 36px; /* Диаметр круга */
+    background-color: #0ACC58; /* Зеленый цвет фона */
+    border-radius: 50%; /* Скругление углов до круга */
+    position: absolute;
+    top: 39px; /* Отступ сверху на 20 пикселей */
+    transform: translateY(-50%);
+    right: 6%; /* Отступ справа на 20 пикселей */
+    border: 1px solid #1b1b1b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-circle {
+    width: 33px; /* Диаметр внутреннего круга */
+    height: 33px; /* Диаметр внутреннего круга */
+    border-radius: 50%; /* Скругление углов до круга */
+    overflow: hidden; /* Обрезка содержимого до формы круга */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-image {
+    width: 100%; /* Ширина изображения равна ширине внутреннего круга */
+    height: 100%; /* Высота изображения равна высоте внутреннего круга */
+    object-fit: cover; /* Масштабирование изображения для заполнения круга */
+}
+
+.svg-container {
+    position: absolute;
+    top: 28px; /* Отступ сверху на 20 пикселей */
+    right: 22%; /* Отступ справа на 20 пикселей */
+}
+
+.container {
+    position: relative;
+    width: calc(100% - 30px); /* Ширина контейнера */
+    aspect-ratio: 290 / 141;
+    height: auto;
+    top: 75px;
+    left: 50%; /* Сдвиг влево на 50% */
+    transform: translateX(-50%); /* Смещение контейнера на половину его ширины влево */
+}
+
+.papka {
+    width: 100%; /* Ширина SVG */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0px; /* Отступ сверху */
+    left: 0px; /* Отступ слева */
+    z-index: 0; /* Уровень слоя */
+}
+
+.papka-mid {
+    width: 100%;
+    height: 82%;
+    z-index: 1;
+    position: absolute;
+    bottom: 0%;
+}
+
+.convert {
+    width: 54px;
+    height: 24px;
+    border: 1px solid #a1a1a1;
+    border-radius: 100px;
+    position: absolute;
+    right: 7%;
+    top: 14px;
+}
+
+.val-circle {
+    aspect-ratio: 1 / 1;
+    height: calc(100% - 4px); /* Диаметр круга */
+    border-radius: 50%; /* Скругление углов до круга */
+    position: absolute;
+    top: 2px; /* Отступ сверху на 20 пикселей */
+    left: 2px;
+    border: 1px solid #20c859;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.val {
+    position: absolute;
+}
+
+.profit-amount {
+    font-family: 'Sora', sans-serif;
+    font-size: 36px;
+    font-weight: 200; /* Вес шрифта 300 */
+    color: #fff;
+    top: 45%;
+    left: 5%;
+    position: absolute;
+    z-index: 1;
+}
+
+.profit-amount-rub::before {
+    content: '₽ ';
+    color: #a1a1a1;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+  }
+  
+  .profit-amount-usd::before {
+    content: '$ ';
+    color: #a1a1a1;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+  }
+
+  
+.percent {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 300; /* Вес шрифта 300 */
+    color: #2DBD67;
+    top: 51%;
+    right: 8%;
+    position: absolute;
+    z-index: 1;
+}
+
+.percent::before{
+    content: '▴ ';
+    font-family: 'Sora', sans-serif;
+    font-weight: 100; /* Вес шрифта 300 */
+    color: #2DBD67;
+}
+
+.percent::after{
+    content: '%';
+}
+
+.cont {
+    width: calc(100% - 30px);
+    height: auto; /* Высота прямоугольника */
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    gap: 5px;
+    top: 41%;
+    left: 50%; /* Сдвиг влево на 50% */
+    transform: translateX(-50%); /* Смещение контейнера на половину его ширины влево */
+}
+
+.week-cont {
+    width: auto;
+    height: auto;
+    position: relative;
+}
+
+.week-box {
+    flex-grow: 1;
+    width: 45vw;
+    height: 33vw;
+}
+
+.gray-rectangle.left {
+    left: 50%; /* Центровая вертикаль */
+    transform: translateX(-103%); /* Смещение на 50 пикселей от центра */
+}
+
+.gray-rectangle.right {
+    left: 50%; /* Центровая вертикаль минус половина ширины плюс 5 пикселей */
+    transform: translateX(+3%); /* Смещение на 50 пикселей от центра */
+}
+
+.total {
+    font-family: 'Sora', sans-serif;
+    font-size: 10px;
+    font-weight: 600; /* Вес шрифта 300 */
+    color: #696969;
+    top: 16%;
+    left: 11%;
+    position: absolute; 
+}
+
+.amount {
+    font-family: 'Sora', sans-serif;
+    font-size: 24px;
+    font-weight: 400; /* Вес шрифта 300 */
+    color: #000;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+}
+
+
+.week {
+    font-family: 'Sora', sans-serif;
+    font-size: 10px;
+    font-weight: 600; /* Вес шрифта 300 */
+    color: #1b1b1b;
+    bottom: 16%;
+    left: 11%;
+    position: absolute;
+}
+
+.week::before {
+    content: "+";
+    color: #1b1b1b;
+}
+
+.week::after {
+    content: " last 7 day";
+    color: #696969;
+}
+
+.ref-cont {
+    top: 68%;
+    width: 89%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ref {
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    position: absolute;
+    bottom: 0%;
+    left: 5px;
+}
+
+.more {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #454545;
+    position: absolute;
+    bottom: 2px;
+    right: 0%;
+}
+
+.bottom-grey {
+    width: calc(100% - 30px); /* Ширина прямоугольника */
+    aspect-ratio: 290 / 80;
+    position: absolute;
+    bottom: calc(15% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.bottom-white {
+    width: 100%; /* Ширина SVG */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0px; /* Отступ сверху */
+    left: 0px; /* Отступ слева */
+    z-index: 0; /* Уровень слоя */
+}
+
+.plan {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #696969;
+    left: 6%; /* Центровая вертикаль минус половина ширины плюс 5 пикселей */
+    position: absolute;
+    top: 23%;
+}
+
+.priority {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 600; /* Вес шрифта 300 */
+    color: #000;
+    bottom: 23%;
+    left: 6%;
+    position: absolute;
+}
+
+.priority::after {
+    content: " Priority";
+}
+
+
+.upgrade-rectangle {
+    width: 96px; /* Ширина прямоугольника */
+    height: 30px;
+    background-color: #1b1b1b; /* Серый цвет фона */
+    border-radius: 100px;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+ .upgrade {
+    font-family: 'Sora', sans-serif;
+    font-size: 10px;
+    font-weight: 600; /* Вес шрифта 300 */
+    color: #f5f5f5;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    position: absolute;
+    z-index: 2;
+}
+
+ .black-circle {
+    height: calc(100% - 4px);
+    aspect-ratio: 1 / 1;
+    background-color: #1b1b1b; /* Зеленый цвет фона */
+    border-radius: 50%; /* Скругление углов до круга */
+    position: absolute;
+    right: 2px; /* Отступ справа на 20 пикселей */
+    border: 1px solid #0ACC58;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    top: 2px;
+}
+
+ .ludi {
+    position: absolute;
+    width: 56%;
+    aspect-ratio: 1 / 1;
+}
+
+
+ .bottom-line {
+    position: absolute;
+    bottom: 53px;
+    width: 100%; /* Ширина линии */
+    border-top: 1px solid #f5f5f5; /* Черная линия толщиной 2 пикселя */
+    background-color: #ececec;
+    height: 2px;
+
+}
+
+ .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 70px;
+    height: 60px;
+    bottom: 23px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+ .viemka {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    position: absolute;
+
+}
+
+ .PlayButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    position: absolute;
+}
+
+ .bottom-icon {
+    position:absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 44px;
+    bottom: 3px;
+}
+
+ .bottom-icon.left {
+    left: 13%;
+}
+
+ .bottom-icon.right {
+    right: 13%;
+}
+
+
+/* ширинв */
+
+@media (min-width: 345px) {
+    .percent {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 375px) {
+    .total {
+        font-size: 12px;
+    }
+    
+    .week {
+        font-size: 11px;
+    }
+
+    .amount {
+        top: 37%;
+        font-size: 26px;
+    }
+
+    .profit-amount {
+        font-size: 39px;
+    }
+
+    .profit-amount::before {
+        font-size: 35px;
+    }
+
+    .convert {
+        width: 56px;
+        height: 26px;
+        right: 7%;
+        top: 14px;
+    }
+      
+    .val {
+        position: absolute;
+    }
+
+}
+
+@media (min-width: 400px) {
+
+    .convert {
+        width: 58px;
+        height: 28px;
+        right: 7%;
+        top: 14px;
+    }
+      
+    .val {
+        position: absolute;
+    }
+
+    .total {
+        font-size: 13px;
+    }
+    
+    .week {
+        font-size: 13px;
+    }
+
+    .amount {
+        font-size: 29px;
+    }
+    
+    .ref {
+        font-size: 22px;
+    }
+
+    .more {
+        font-size: 14px;
+    }
+
+    .profit-amount {
+        font-size: 46px;
+    }
+
+    .profit-amount::before {
+        font-size: 40px;
+    }
+
+    .percent {
+        font-size: 17px;
+    }
+}
+
+/* */
+
+@media (min-height: 610px) {
+    .plan {
+        font-size: 13px;
+        left: 6%; /* Центровая вертикаль минус половина ширины плюс 5 пикселей */
+        top: 25%;
+    }
+    
+    .priority {
+        font-size: 20px;
+        bottom: 25%;
+        left: 6%;   
+    }
+}
+
+@media (min-height: 660px) {
+    .container {
+        top: 85px;
+    }
+
+    .plan {
+        font-size: 15px;
+    }
+
+    .priority {
+        font-size: 23px;  
+    }
+
+    .bottom-grey {
+        bottom: 13%;
+    }
+
+    .ref-cont {
+        top: 71%;
+    }
+
+    .hello {
+        font-size: 18px;
+        top: 20px; /* Отступ сверху на 20 пикселей */
+        left: 6%; /* Отступ слева на 20 пикселей */
+    }
+    
+    .nickname {
+        font-size: 23px;
+        top: 40px; /* Смещение на 40 пикселей от верха */
+        left: 6%;
+    }
+    
+    .green-circle {
+        width: 43px; /* Диаметр круга */
+        height: 43px; /* Диаметр круга */
+        top: 44px; /* Отступ сверху на 20 пикселей */
+        transform: translateY(-50%);
+        right: 6%; /* Отступ справа на 20 пикселей */
+        border: 1.5px solid #1b1b1b;
+    }
+    
+    .inner-circle {
+        width: 37px; /* Диаметр внутреннего круга */
+        height: 37px; /* Диаметр внутреннего круга */
+    }
+      
+    .svg-container {
+        position: absolute;
+        top: 47px; /* Отступ сверху на 20 пикселей */
+        transform: translateY(-50%);
+        right: 21%; /* Отступ справа на 20 пикселей */
+    }
+    
+    .icon-support {
+        width: 7vw;
+        aspect-ratio: 1 / 1;
+    }
+
+    .upgrade-rectangle {
+        width: 98px; /* Ширина прямоугольника */
+        height: 32px;
+    }
+
+    .upgrade {
+        font-size: 10px;
+    }
+}
+
+@media (min-height: 740px) {
+    .plan {
+        font-size: 16px;
+    }
+
+    .priority {
+        font-size: 24px;  
+    }
+
+    .upgrade {
+        font-size: 10.4px;
+        left: 8px;
+        top: 19px;
+    }
+
+    .upgrade-rectangle {
+        width: 103px;
+        height: 37px; /* Ширина прямоугольника */
+    }
+
+    .black-circle {
+        box-shadow: 0 0 0 0.5px #20c859;
+        top: 2px;
+        right: 2px;
+    }
+
+    .container {
+        top: 95px;
+    }
+
+    .hello {
+        top: 23px;
+    }
+
+    .nickname {
+        top: 43px;
+    }
+
+    .green-circle {
+        top: 46px; /* Отступ сверху на 20 пикселей */
+    }
+
+    .svg-container {
+        top: 48px; /* Отступ сверху на 20 пикселей */
+    }
+}
