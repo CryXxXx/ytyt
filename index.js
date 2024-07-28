@@ -59,61 +59,49 @@ if (window.Telegram.WebApp.initDataUnsafe) {
 
 
 
+const ValCircle = document.querySelector('.convert');
+let isMovingRight = true;
+
+
+let originalTotDep;
+let originalWeekDep;
+let originalProfitAmount;
+
+let TotDep;
+let WeekDep;
+let ProfitAmount;
+
+function useData() {
+  originalTotDep = parseFloat(document.getElementById('tot-dep').textContent);
+  originalWeekDep = parseFloat(document.getElementById('week-dep').textContent);
+  originalProfitAmount = parseFloat(document.getElementById('profit').textContent);
+
+  TotDep = document.getElementById('tot-dep');
+  WeekDep = document.getElementById('week-dep');
+  ProfitAmount = document.getElementById('profit');
+
+  ProfitAmount.textContent = formatNumber(parseFloat(ProfitAmount.textContent));
+  TotDep.textContent = formatNumber(parseFloat(TotDep.textContent));
+  WeekDep.textContent = formatNumber(parseFloat(WeekDep.textContent));
+
+  
+
+  ProfitAmount.classList.add('profit-amount-rub'); 
+
+  bigNumElements = document.querySelectorAll('.big-num');
+  bigNumElements.forEach((element) => {
+    const num = parseFloat(element.textContent);
+    const formattedNum = formatNumber(num);
+    element.textContent = formattedNum;
+  });
+}
+
+let exchangeRate = 86
 
 
 
-const MovCircle = document.querySelector('.upgrade-rectangle');
-const upgradeText = document.getElementById('upgrade'); // Получаем элемент с надписью
-let hasMoved = false; 
-
-MovCircle.addEventListener('click', () => {
-  if (!hasMoved) { 
-    hasMoved = true;
-
-    let clipProgress = 0; // Переменная для отслеживания прогресса обрезки
-    let clipDelay = 150; // Задержка обрезки в мс
-
-    anime({
-      targets: '.black-circle',
-      translateX: -66,
-      duration: 500,
-      easing: 'easeInOutExpo',
-      update: (anim) => {
-        const progress = anim.progress;
-
-        if (progress > 50) {
-          document.getElementById('people').style.display = 'none';
-          document.getElementById('share').style.display = 'block';
-        }
-
-        // Анимация скрытия текста "UPGRADE"
-        // Задержка обрезки:
-        if (progress >= (clipDelay / 500) * 100) { // Начинаем обрезку, когда прогресс анимации достигает 50 мс
-          clipProgress = progress - (clipDelay / 500) * 100; // Вычисляем прогресс обрезки
-          upgradeText.style.clipPath = `inset(0 ${clipProgress * 3.9}% 0 0)`; // Обрезаем текст справа налево
-        }
-
-        
-        upgradeText.style.opacity = 1 - (progress / 500); // Устанавливаем прозрачность текста от 1 (полная непрозрачность) до 0 (полная прозрачность)
-      },
-      complete: () => {
-        // Убедиться, что правый икон останется виден
-        document.getElementById('share').style.display = 'block';
-        document.getElementById('people').style.display = 'none';
-      }
-    });
-  }
-});
 
 
-
-const bigNumElements = document.querySelectorAll('.big-num');
-
-bigNumElements.forEach((element) => {
-  const num = parseFloat(element.textContent);
-  const formattedNum = formatNumber(num);
-  element.textContent = formattedNum;
-});
 
 function formatNumber(num) {
   if (num % 1 === 0) {
@@ -125,24 +113,9 @@ function formatNumber(num) {
 
 
 
-const ValCircle = document.querySelector('.convert');
-let isMovingRight = true;
-
-let originalTotDep = parseFloat(document.querySelector('#tot-dep').textContent);
-let originalWeekDep = parseFloat(document.querySelector('#week-dep').textContent);
-let originalProfitAmount = parseFloat(document.querySelector('.profit-amount').textContent);
 
 
-let TotDep = document.querySelector('#tot-dep');
-let WeekDep = document.querySelector('#week-dep');
-let ProfitAmount = document.querySelector('.profit-amount');
 
-ProfitAmount.textContent = formatNumber(parseFloat(ProfitAmount.textContent));
-TotDep.textContent = formatNumber(parseFloat(TotDep.textContent));
-WeekDep.textContent = formatNumber(parseFloat(WeekDep.textContent));
-
-ProfitAmount.classList.add('profit-amount-rub'); 
-let exchangeRate = 86
 
 
 ValCircle.addEventListener('click', () => {
@@ -231,6 +204,61 @@ ValCircle.addEventListener('click', () => {
         isMovingRight = true;
       }
     });
+
+  }
+});
+
+
+
+
+
+
+
+
+
+
+const MovCircle = document.querySelector('.upgrade-rectangle');
+const upgradeText = document.getElementById('upgrade'); // Получаем элемент с надписью
+let hasMoved = false; 
+
+MovCircle.addEventListener('click', () => {
+  if (!hasMoved) { 
+    hasMoved = true;
+
+    let clipProgress = 0; // Переменная для отслеживания прогресса обрезки
+    let clipDelay = 150; // Задержка обрезки в мс
+
+    anime({
+      targets: '.black-circle',
+      translateX: -66,
+      duration: 500,
+      easing: 'easeInOutExpo',
+      update: (anim) => {
+        const progress = anim.progress;
+
+        if (progress > 50) {
+          document.getElementById('people').style.display = 'none';
+          document.getElementById('share').style.display = 'block';
+        }
+
+        // Анимация скрытия текста "UPGRADE"
+        // Задержка обрезки:
+        if (progress >= (clipDelay / 500) * 100) { // Начинаем обрезку, когда прогресс анимации достигает 50 мс
+          clipProgress = progress - (clipDelay / 500) * 100; // Вычисляем прогресс обрезки
+          upgradeText.style.clipPath = `inset(0 ${clipProgress * 3.9}% 0 0)`; // Обрезаем текст справа налево
+        }
+
+        
+        upgradeText.style.opacity = 1 - (progress / 500); // Устанавливаем прозрачность текста от 1 (полная непрозрачность) до 0 (полная прозрачность)
+      },
+      complete: () => {
+        // Убедиться, что правый икон останется виден
+        document.getElementById('share').style.display = 'block';
+        document.getElementById('people').style.display = 'none';
+      }
+    });
+  }
+});
 
   }
 });
