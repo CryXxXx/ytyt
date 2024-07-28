@@ -1,28 +1,25 @@
+
 if (window.Telegram.WebApp.initDataUnsafe) {
 
 
-
-  // username на сайте
   const userName = window.Telegram.WebApp.initDataUnsafe.user.first_name;
-  
   document.getElementById('nickname').textContent = userName; 
   
   
-  
-  
-  // Получаем аватарку
+
   const userAvatar = window.Telegram.WebApp.initDataUnsafe.user.photo_url;
-  
   document.getElementById('telegram_icon').src = userAvatar; 
   
   
-  
-  // Получаем Telegram ID из initDataUnsafe
+
   const tgId = window.Telegram.WebApp.initDataUnsafe.user.id;
   
   
-  // Отправляем ID на сервер
-  fetch('https://debc-89-22-177-227.ngrok-free.app/receive_tg_id', {
+
+
+
+
+  fetch('https://debc-89-22-177-227.ngrok-free.app/receive_tg_id ', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -37,11 +34,11 @@ if (window.Telegram.WebApp.initDataUnsafe) {
   })
   .then(userData => {
     // Отображаем данные пользователя на сайте
-    document.getElementById('tot-dep').textContent = userData.deposit
-    document.getElementById('profit').textContent = userData.windeposit
+    document.getElementById('tot-dep').textContent = userData.deposit;
+    document.getElementById('profit').textContent = userData.windeposit;
     document.getElementById('tot-trade').textContent = userData.trades;
-    document.getElementById('week-dep').textContent = userData.deposit//доделать потом
-    document.getElementById('week-trade').textContent = userData.trades;//доделать потом
+    document.getElementById('week-dep').textContent = userData.deposit;
+    document.getElementById('week-trade').textContent = userData.trades;
 
     useData();
   })
@@ -49,13 +46,11 @@ if (window.Telegram.WebApp.initDataUnsafe) {
     console.error('Ошибка:', error);
     document.getElementById('user-data').textContent = 'Ошибка при загрузке данных пользователя: ' + error.message;
   });
-  
+
   } else {
   document.getElementById('tg-id').textContent = 'Ошибка: initDataUnsafe не доступен.';
   document.getElementById('user-data').textContent = '';
   }
-
-
 
 
 
@@ -102,9 +97,6 @@ let exchangeRate = 86
 
 
 
-
-
-
 function formatNumber(num) {
   if (num % 1 === 0) {
     return num.toLocaleString('en-US', { useGrouping: true });
@@ -112,10 +104,6 @@ function formatNumber(num) {
     return num.toLocaleString('en-US', { useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 }
-
-
-
-
 
 
 
@@ -212,13 +200,6 @@ ValCircle.addEventListener('click', () => {
 
 
 
-
-
-
-
-
-
-
 const MovCircle = document.querySelector('.upgrade-rectangle');
 const upgradeText = document.getElementById('upgrade'); // Получаем элемент с надписью
 let hasMoved = false; 
@@ -262,5 +243,3 @@ MovCircle.addEventListener('click', () => {
   }
 });
 
-  }
-});
