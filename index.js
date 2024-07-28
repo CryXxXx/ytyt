@@ -42,6 +42,8 @@ if (window.Telegram.WebApp.initDataUnsafe) {
     document.getElementById('tot-trade').textContent = userData.trades;
     document.getElementById('week-dep').textContent = userData.deposit//доделать потом
     document.getElementById('week-trade').textContent = userData.trades;//доделать потом
+
+    useData();
   })
   .catch((error) => {
     console.error('Ошибка:', error);
